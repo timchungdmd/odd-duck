@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: rgba(255, 255, 255, 0.561);
+  color: rgb(79, 62, 212);
+  width: 80%;
+  margin:auto;
+  flex: auto;
+  grid-template-columns:6fr;
+}
+div.top{
+  grid-template-columns: 2;
+  box-sizing: border-box;
+}
+div.menu{
+  grid-column: 1;
+
+}
+div.title{
+  grid-column:2;
+ 
+}
+h1 {
+  font-size: 2rem;
+  color: rosybrown;
+  border: black solid 2px;
+  border-radius: 1rem;
+  margin:0 1rem;
+  min-width: 200px;
+  grid-column: 2;
+  grid-row:1;
+}
+
+main {
+  width: 100%;
+  margin: 3rem 3rem;
+  display: grid;
+  border-style: rgb(0, 0, 0) solid;
+  grid-template-columns: 250px 6fr;
+  grid-template-rows: 6.5rem 10rem 20rem 15%;
+  height:auto;
+}
+
+#siteLogo {
+  width: 250px;
+  z-index: 2;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+section {
+
+  /* section is both a Grid Item and a Flex Box container */
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1.3rem;
+  grid-row: 2/4;
+  grid-column: 2/4;
+  display: flex;
+  justify-content: space-between;
+  
+}
+div.lorem{
+  grid-row: 4/5;
+  grid-column: 2/4;
+  background-color: antiquewhite;
+  height:120px
+ 
+ 
+}
+
+section img {
+  width: 33%;
+  max-height: 26rem;
+  border: 5px solid transparent;
+  flex-direction: row;
+  
+}
+
+section img:hover {
+  border: 5px solid rgb(169, 108, 28);
+  cursor: pointer;
+}
+
+ul {
+  margin: 1rem;
+  color: black;
+  list-style: circle;
+}
+
+/* /* -- button -- */
+/* section + div {
+  background-color: rgba(128, 128, 128, 0.734);
+  color: lightgrey;
+  padding: .5rem 1rem;
+  width: max-content;
+  height: max-content;
+  font-size: .8rem;
+  margin: 1rem;
+  pointer-events: none;
+}  */
+
+/* section + div.clicks-allowed {
+  background-color: rosybrown;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+} */
+
+
+/* section + div.clicks-allowed:hover {
+  background-color: rgb(211, 187, 175);
+} */
+
+div.scoreboard{
+  grid-column: 1;
+  grid-row: 2/5;
+  background-color: rgba(127, 255, 212, 0.111);
+
+}
+menu{
+  grid-column:1;
+  grid-row: 1;
+}
+footer{
+  grid-row:6/8;
+  grid-column: 1/4;
+  background-color: rgba(255, 208, 0, 0.552);
+  width: 100%;
+  height: 7rem;
+}
+div.top{
+  justify-content: space-between;
+  grid-row: 1;
+  grid-column: 1;
+}
