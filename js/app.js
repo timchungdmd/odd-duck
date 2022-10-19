@@ -255,3 +255,4 @@ const myChart = new Chart(
 myContainer.addEventListener('click', handleClick);
 
 renderPickones();
+
