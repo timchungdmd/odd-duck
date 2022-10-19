@@ -150,15 +150,106 @@ function handleClick(event) {
       break;
     }
   }
-  if (howManyTimesUserHasVoted === maxNumberOfVotes) {
-    renderResults();
-    myContainer.removeEventListener('click', handleClick);
-    r/* esultBtn.className = 'clicks-allowed'; */
-    /* resultBtn.addEventListener('click',  */
-  } else {
-    renderPickones();
-  }
+
+
+if (howManyTimesUserHasVoted === maxNumberOfVotes) {
+  myContainer.removeEventListener('click', handleClick);
+  // resultBtn.className = 'clicks-allowed';
+  // resultBtn.addEventListener('click', renderResults);
+  renderChart();
+  renderResults();
+} else {
+  renderPickones();
 }
+
+
+// const labels = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Gray'];
+
+
+function renderChart() {
+
+let pickNames = [];
+let pickViews = [];
+let pickScore = [];
+for (let i = 0; i < allPickones.length; i++) {
+  pickNames.push(allPickones[i].name);
+  pickViews.push(allPickones[i].views);
+  pickScore.push(allPickones[i].score);
+}
+// console.log(goatNames);
+
+/* const data = {
+  labels: pickNames,
+  datasets: [
+    {
+      label: '# of views',
+      data: pickViews,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)'
+      ],
+      borderWidth: 1
+    },
+    {
+      label: '# of votes',
+      data: pickScore,
+      backgroundColor: [
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 159, 64)'
+      ],
+      borderWidth: 1
+    }
+  ]
+}; */
+
+
+
+/* const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+}; */
+
+const labels = pickNames;
+const data = {
+  labels: labels,
+  datasets: [{
+    label: '# of views',
+    data: pickViews,
+    fill: false,
+    borderColor: 'rgb(255, 0, 255)',
+    tension: 0.1
+  },{
+    label: '# of votes',
+    data: pickScore,
+    fill: false,
+    borderColor: 'rgb(0, 98, 255)',
+    tension: 0.1
+  }]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+};
+
+const myChart = new Chart(
+  document.getElementById('myChart'),
+  config
+);
+
+}}
+
 
 
 myContainer.addEventListener('click', handleClick);
