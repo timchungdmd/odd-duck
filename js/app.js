@@ -66,6 +66,7 @@ let maxNumberOfVotes = 15;
 
 // image2.src = 'images/sassy-Pickone.jpg';
 
+// Constructor function
 function Pickone(name, fileExtension = 'jpeg') {
   this.name = name;
   this.fileExtension = fileExtension;
@@ -139,15 +140,25 @@ function renderPickones() {
 }
 
 let dataStoreArray=[]
+
+function renderResults() {
+  for (let i = 0; i < allPickones.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${allPickones[i].name}: ${allPickones[i].views} views, ${allPickones[i].score} votes`;
+    results.appendChild(li);
+  }
+  
+}
+
   function createData(name,score,views){
     let dataPoint= new Pickone(name,score,views);
     dataStoreArray.push(dataPoint);
-    createData.renderChart();
+    datapoint.renderResults();
   }
 
   function storeData(){
     console.log(previousData);
-    let stringifyData=JSON.stringify(previousData);
+    let stringifyData=JSON.stringify(dataStoreArray);
     console.log(stringifyData);
     localStorage.setItem('data', stringifyData);
   }
@@ -155,9 +166,9 @@ let dataStoreArray=[]
   function getData() {
     // check if localstorage has orders?
     // if there are no orders potentialOrders will be null
-    let previousData = localStorage.getItem('data');
+    let dataStoreArray = localStorage.getItem('data');
     // if it does have orders, unpack them
-    if (previousData) {
+    if (dataStoreArray) {
       // turn it back an array,
       let parsedData = JSON.parse(previousData);
       console.log(parsedData);
@@ -167,25 +178,15 @@ let dataStoreArray=[]
       // NEW WAY: for (let varNameToReferToEachItemInArray of nameOfArray )
       for (let data of parsedData) {
         console.log(data);
-        let name = order.name;
-        let score = order.score;
-        let views = order.views;
+        let name = data.name;
+        let score = data.score;
+        let views = data.views;
         //makeADrink(name, drinkSize, milk, drinkType)
         createData(name, score, views);
       }
     }
   
   }
-
-
-
-function renderResults() {
-  for (let i = 0; i < allPickones.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${allPickones[i].name}: ${allPickones[i].views} views, ${allPickones[i].score} votes`;
-    results.appendChild(li);
-  }
-}
 
 
 
