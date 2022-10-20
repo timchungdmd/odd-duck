@@ -180,7 +180,7 @@ function renderResults() {
         console.log(data);
         let name = data.name;
         let score = data.score;
-        let views = data.views;
+        let views = order.views;
         //makeADrink(name, drinkSize, milk, drinkType)
         createData(name, score, views);
       }
