@@ -1,7 +1,22 @@
 'use strict';
 
+/* function handleInput(){
+  e.preventDefault();
+  console.log(e);
+  // console.log('submit happened');
+  console.log(e.target.name.value);
+  let userName = e.target.name.value;
+}
+ */
+/* function handleSubmit(e) {
+  e.preventDefault();
+  console.log(e);
+  // console.log('submit happened');
+  console.log(e.target.name.value);
 
-
+  // get data from the event (the stuff the user submitted):
+  let userName = e.target.name.value;
+} */
 
 // there is a collection of Pickone photos
 // user is presented them in 2s — two Pickones photos at a time\
@@ -104,10 +119,7 @@ function renderPickones() {
     P3 = selectRandomPickone(); 
   }
 
-
   
-
-
  /*  while (Pickone1 === Pickone2) {
     Pickone2 = selectRandomPickone(); // 2
     console.log(Pickone1, Pickone2);
@@ -126,6 +138,47 @@ function renderPickones() {
   allPickones[P3].views++;
 }
 
+let dataStoreArray=[]
+  function createData(name,score,views){
+    let dataPoint= new Pickone(name,score,views);
+    dataStoreArray.push(dataPoint);
+    createData.renderChart();
+  }
+
+  function storeData(){
+    console.log(previousData);
+    let stringifyData=JSON.stringify(previousData);
+    console.log(stringifyData);
+    localStorage.setItem('data', stringifyData);
+  }
+
+  function getData() {
+    // check if localstorage has orders?
+    // if there are no orders potentialOrders will be null
+    let previousData = localStorage.getItem('data');
+    // if it does have orders, unpack them
+    if (previousData) {
+      // turn it back an array,
+      let parsedData = JSON.parse(previousData);
+      console.log(parsedData);
+      // POJO — Plain old JavaScript objects
+      // reinstantiate — turn them POJOs back into instances of Drink
+      // OLD WAY: for (let i = 0; i < parsedOrders.length; i++)
+      // NEW WAY: for (let varNameToReferToEachItemInArray of nameOfArray )
+      for (let data of parsedData) {
+        console.log(data);
+        let name = order.name;
+        let score = order.score;
+        let views = order.views;
+        //makeADrink(name, drinkSize, milk, drinkType)
+        createData(name, score, views);
+      }
+    }
+  
+  }
+
+
+
 function renderResults() {
   for (let i = 0; i < allPickones.length; i++) {
     let li = document.createElement('li');
@@ -133,6 +186,8 @@ function renderResults() {
     results.appendChild(li);
   }
 }
+
+
 
 
 function handleClick(event) {
@@ -152,6 +207,9 @@ function handleClick(event) {
   }
 
 
+
+  
+
 if (howManyTimesUserHasVoted === maxNumberOfVotes) {
   myContainer.removeEventListener('click', handleClick);
   // resultBtn.className = 'clicks-allowed';
@@ -164,6 +222,11 @@ if (howManyTimesUserHasVoted === maxNumberOfVotes) {
 
 
 // const labels = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Gray'];
+function createData(){
+ console.log(pickNames); 
+}
+
+
 
 
 function renderChart() {
@@ -255,4 +318,3 @@ const myChart = new Chart(
 myContainer.addEventListener('click', handleClick);
 
 renderPickones();
-
